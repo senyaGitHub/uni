@@ -1,3 +1,4 @@
+
 def welcome(width=100):
     """
     Task: Display a welcome message.
@@ -31,50 +32,34 @@ def welcome(width=100):
 
 
 def main_menu():
-    """
-    Task: Display a menu of options. Read in and return the user's response.
-
-    A menu consisting of the following options should be displayed:
-    'Load Data', 'Process Data', 'Visualise Data', and 'Exit'
-
-    The user's response should be read in and returned as an integer corresponding to the selected option.
-    For example, 1 for 'Load Data', 2 for 'Process Data' and so on.
-
-    If the user enters an invalid option then:
-     - a suitable error message should be displayed
-     - the user should be prompted to select again until a valid option is selected.
-
-    For example, a menu similar to the following should be displayed:
-
+    while True:
+        try:
+            option = int(input(''' 
     Main Menu:
       [1] Load Data
       [2] Process Data
       [3] Visualise Data
       [4] Exit
     Select option:
-
-    :return: An integer corresponding to a valid selection
-    """
-    # TODO: Your code here (remove pass below)
-    pass
-
+    '''))
+            if option in range(1,5):
+                return option
+            else:
+                print("Choose an option between 1 and 4. ")
+        except Exception as e:
+            print("Error: please enter a number. ")
+            pass
 
 def data_file_path():
-    """
-    Task: Retrieve a file path to the data file.
+    default_path = "data/titanic.csv"
+    user_input = input("Please enter the file path for the data file (e.g., data/titanic.csv): ")
 
-    The function should prompt the user to enter the file path for a data file (e.g. data/titanic.csv).
-    If the file path entered by the user does not end in 'csv' then:
-        - a suitable error message should be displayed
-        - the default path "data/titanic.csv" should be returned.
-    Otherwise, the file path entered by the user should be returned.
+    if not user_input.endswith('.csv'):
+        print("Error: The file path must end with '.csv'. Returning the default path.")
+        return default_path
 
-    Hint: You can use str.endswith("csv") where str is your string.
+    return user_input
 
-    :return: Return a file path as a string
-    """
-    # TODO: Your code here (remove pass below)
-    pass
 
 
 def progress(operation, percent):

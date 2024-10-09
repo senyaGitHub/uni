@@ -2,6 +2,7 @@
 # TODO: Your code here
 import process
 import tui
+import os
 # Task: Create an empty list named 'records'.
 
 # This will be used to store the date read from the source data file.
@@ -11,17 +12,22 @@ records = []
 def run():
     # Task: Use global keyword to reference the records variable in this function
     global records
-    # TODO: Your code here
-
-    tui.welcome()    # Task: Call the function welcome of the module tui.
+    # Task: Call the function welcome of the module tui.
     # This will display our welcome message when the program is executed.
-    # TODO: Your code here
+    # clearing a terminal
+    os.system('cls' if os.name == 'nt' else 'clear')
+    tui.welcome() 
+
 
     while True:
         # Task: Using the appropriate function in the module tui, display a menu of options
         # for the different operations that can be performed on the data.
         # Assign the selected option to a suitable local variable
         # TODO: Your code here
+        option = tui.main_menu()
+        os.system('cls' if os.name == 'nt' else 'clear')
+        if option == 1:
+            print(tui.data_file_path())
 
         # Task: Check if the user selected the option for loading data.  If so, then do the following:
         # - Use the appropriate function in the tui module to indicate that data loading has started.
