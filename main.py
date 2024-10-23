@@ -29,6 +29,7 @@ def run():
         if option == 1:
             print(tui.data_file_path())
 
+
         # Task: Check if the user selected the option for loading data.  If so, then do the following:
         # - Use the appropriate function in the tui module to indicate that data loading has started.
         # - Load the data (see below).

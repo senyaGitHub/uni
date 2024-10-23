@@ -47,19 +47,19 @@ def main_menu():
             else:
                 print("Choose an option between 1 and 4. ")
         except Exception as e:
-            print("Error: please enter a number. ")
+            error("please enter a number.")
             pass
+
 
 def data_file_path():
     default_path = "data/titanic.csv"
     user_input = input("Please enter the file path for the data file (e.g., data/titanic.csv): ")
 
     if not user_input.endswith('.csv'):
-        print("Error: The file path must end with '.csv'. Returning the default path.")
+        error("The file path must end with '.csv'. Returning the default path.")
         return default_path
 
     return user_input
-
 
 
 def progress(operation, percent):
@@ -82,13 +82,19 @@ def progress(operation, percent):
 
     --- DATA LOADING: STARTED ---
 
-
     :param operation: A string indicating the operation being started
     :param percent: An integer between 0 - 100 indicating the progress percentage
     :return: Does not return anything
     """
-    # TODO: Your code here (remove pass below)
-    pass
+
+    if percent == 0:
+        print()
+        print(f'~~~ {operation.upper()}: STARTED ~~~')
+    elif percent == 100:
+        print(f'~~~ {operation.upper()}: COMPLETED ~~~')
+        print()
+    else:
+        print(f'~~~ {operation.upper()}: IN PROGRESS ({percent}%) ~~~')
 
 
 def error(error_msg):
@@ -103,7 +109,7 @@ def error(error_msg):
     :return: Does not return anything
     """
     # TODO: Your code here (remove pass below)
-    pass
+    print(f"Error! {error_msg}")
 
 
 def process_menu():
@@ -127,7 +133,23 @@ def process_menu():
     :return: An integer corresponding to a valid option
     """
     # TODO: Your code here (remove pass below)
-    pass
+    while True:
+        try:
+            option = int(input(''' 
+      [1] Extract Passenger Names
+      [2] Count Survivors
+      [3] Count Passengers Per Gender
+      [4] Count Passengers Per Age Group
+    Select option:
+      [5] Return to main menu
+    '''))
+            if option in range(1,6):
+                return option
+            else:
+                print("Choose an option between 1 and 5. ")
+        except Exception as e:
+            error("please enter a number.")
+            pass
 
 
 def display_passenger_names(passenger_names):
